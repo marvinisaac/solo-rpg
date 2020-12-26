@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+function setup()
+{
+    echo '>>> Setting up...'
+
+    source .env
+    export DOCKER_NETWORK \
+        PUBLIC_URL
+
+    echo '> Set up done.'
+}
+
+function run()
+{
+    cleanup
+
+    echo '>>> Running...'
+
+    docker run -d \
+        -e VIRTUAL_HOST=$PUBLIC_URL \
+        -v $PWD/lab:/usr/share/nginx/html \
+        -v $PWD/site.conf:/etc/nginx/conf.d/site.conf \
+        --name ${PWD##*/}-nginx \
+        --network $DOCKER_NETWORK \
+        nginx:alpine
+}
+
+function cleanup()
+{
+    echo '>>> Cleaning up...'
+    docker stop ${PWD##*/}-nginx
+    docker rm ${PWD##*/}-nginx
+    echo '> Cleanup done.'
+}
+
+setup
+run
