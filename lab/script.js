@@ -1,8 +1,16 @@
-// Consult the Fate Chart
+// Ask a question on the Fate Chart
 function fate(chaos = 5, odds =  '50/50') {
     let die = roll(100);
     let range = getRange(chaos, odds);
 
+    return {
+        fate: fateResult(die, range),
+        event: fateEvent(die, chaos)
+    };
+}
+
+// Consult the Fate Chart for result
+function fateResult(die, range) {
     if (die >= range.noExceptional) {
         return 'Exceptional no'
     }
@@ -13,6 +21,16 @@ function fate(chaos = 5, odds =  '50/50') {
         return 'Yes'
     }
     return 'Exceptional yes'
+}
+
+// Check if question triggered a random event
+function fateEvent(die, chaos) {
+    if (die % 11 === 0
+        && die / 11 <= chaos
+    ) {
+        return true;
+    }
+    return false;
 }
 
 // Roll an n-sided die
