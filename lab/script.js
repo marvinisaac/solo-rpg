@@ -28,9 +28,37 @@ function fateEvent(die, chaos) {
     if (die % 11 === 0
         && die / 11 <= chaos
     ) {
-        return true;
+        return {
+            focus: eventFocus()
+        };
     }
     return false;
+}
+
+function eventFocus() {
+    const focusTable = {
+        7: 'Remote event',
+        28: 'NPC action',
+        35: 'Introduce a new NPC',
+        45: 'Move toward a thread',
+        52: 'Move away from a thread',
+        55: 'Close a thread',
+        67: 'PC negative',
+        75: 'PC positive',
+        83: 'Ambiguous event',
+        92: 'NPC negative',
+        100: 'NPC positive'
+    };
+    const focusTableUpperLimit = Object.keys(focusTable);
+    let die = roll(100);
+    
+    // Loop over upper limits and compare against die roll
+    for (let index = 0; index < focusTableUpperLimit.length; index++) {
+        const limit = focusTableUpperLimit[index];
+        if (die <= parseInt(limit)) {
+            return focusTable[limit];
+        }
+    }
 }
 
 // Roll an n-sided die
