@@ -166,7 +166,7 @@ function eventAction() {
         'Oppress',
         'Change'
     ];
-    let die = roll(100);
+    let die = roll(100) - 1;
 
     return actionTable[die];
 }
@@ -274,7 +274,7 @@ function eventSubject() {
         'Anger',
         'Information'
     ];
-    let die = roll(100);
+    let die = roll(100) - 1;
 
     return subjectTable[die];
 }
