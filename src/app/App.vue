@@ -16,12 +16,16 @@ export default {
     data: () => ({
         text: ''
     }),
+    created () {
+        this.text = localStorage.getItem('text') || ''
+    },
     methods: {
         ask() {
             const result = mythic.ask()
             this.text += '\r\n\r\n'
             this.text += `> ${result.result}`
             this.text += '\r\n\r\n'
+            localStorage.setItem('text', this.text)
         }
     }
 }
