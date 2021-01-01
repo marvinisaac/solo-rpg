@@ -21,7 +21,7 @@ function run()
         -e VIRTUAL_HOST=$PUBLIC_URL \
         -v $PWD/lab:/usr/share/nginx/html \
         -v $PWD/site.conf:/etc/nginx/conf.d/site.conf \
-        --name ${PWD##*/}-nginx \
+        --name ${PWD##*/}-lab \
         --network $DOCKER_NETWORK \
         nginx:alpine
 }
@@ -29,8 +29,8 @@ function run()
 function cleanup()
 {
     echo '>>> Cleaning up...'
-    docker stop ${PWD##*/}-nginx
-    docker rm ${PWD##*/}-nginx
+    docker stop ${PWD##*/}-lab
+    docker rm ${PWD##*/}-lab
     echo '> Cleanup done.'
 }
 
