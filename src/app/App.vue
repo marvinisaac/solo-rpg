@@ -1,11 +1,17 @@
 <template>
-    <h1>Hello World!</h1>
+    <button @click="ask()">
+        Ask
+    </button>
 </template>
 
 <script>
+import mythic from './services/mythic.js'
+
 export default {
-    created () {
-        console.log('Hello World!')
+    methods: {
+        ask() {
+            console.log(mythic.ask())
+        }
     }
 }
 </script>
