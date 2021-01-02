@@ -1,14 +1,24 @@
 <template>
-    <div>
-        <textarea id="textarea" v-model="text"></textarea>
-    </div>
-    <div>
+    <div class="button-container">
         <button @click="ask()">
-            Ask (Ctrl + Enter)
+            <span v-if="state.isAsking">
+                Asking...
+            </span>
+            <span v-else>
+                Ask (Ctrl + Enter)
+            </span>
         </button>
         <button @click="save()">
-            Save (Ctrl + S)
+            <span v-if="state.isSaving">
+                Saving...
+            </span>
+            <span v-else>
+                Save (Ctrl + S)
+            </span>
         </button>
+    </div>
+    <div>
+        <textarea id="textarea" v-model="text"></textarea>
     </div>
 </template>
 
@@ -18,6 +28,10 @@ import hotkeys from 'hotkeys-js'
 
 export default {
     data: () => ({
+        state: {
+            isAsking: false,
+            isSaving: false
+        },
         text: ''
     }),
     created () {
@@ -36,22 +50,30 @@ export default {
     },
     methods: {
         ask() {
-            const result = mythic.ask()
-            this.text += '\r\n\r\n'
-            this.text += `> ${result.result}\r\n`
+            this.state.isAsking = true
+            setTimeout(() => {
+                const result = mythic.ask()
+                this.text += '\r\n\r\n'
+                this.text += `> ${result.result}\r\n`
 
-            if (result.randomEvent) {
-                this.text += '> Random event!\r\n'
-                this.text += `  Focus:   ${result.randomEvent.focus}\r\n`
-                this.text += `  Subject: ${result.randomEvent.subject}\r\n`
-                this.text += `  Action:  ${result.randomEvent.action}\r\n`
-            }
+                if (result.randomEvent) {
+                    this.text += '> Random event!\r\n'
+                    this.text += `  Focus:   ${result.randomEvent.focus}\r\n`
+                    this.text += `  Subject: ${result.randomEvent.subject}\r\n`
+                    this.text += `  Action:  ${result.randomEvent.action}\r\n`
+                }
 
-            this.text += '\r\n'
-            this.save()
+                this.text += '\r\n'
+                this.state.isAsking = false
+                this.save()
+            }, 500);
         }, 
-        save () {
-            localStorage.setItem('text', this.text)
+        save() {
+            this.state.isSaving = true
+            setTimeout(() => {
+                localStorage.setItem('text', this.text)
+                this.state.isSaving = false
+            }, 500);
         }
     }
 }
@@ -64,7 +86,11 @@ textarea {
     resize: none;
     width: 50%;
 }
-button {
-    margin-right: 0.25em;
+.button-container {
+    margin-bottom: 0.25em;
+
+    button {
+        margin-right: 0.25em;
+    }
 }
 </style>
