@@ -4,7 +4,10 @@
     </div>
     <div>
         <button @click="ask()">
-            Ask
+            Ask (Ctrl + Enter)
+        </button>
+        <button @click="save()">
+            Save (Ctrl + S)
         </button>
     </div>
 </template>
@@ -26,6 +29,10 @@ export default {
         hotkeys('ctrl+enter', () => {
             this.ask()
         })
+        hotkeys('ctrl+s', (event) => {
+            event.preventDefault()
+            this.save()
+        })
     },
     methods: {
         ask() {
@@ -41,6 +48,9 @@ export default {
             }
 
             this.text += '\r\n'
+            this.save()
+        }, 
+        save () {
             localStorage.setItem('text', this.text)
         }
     }
@@ -53,5 +63,8 @@ textarea {
     outline: none;
     resize: none;
     width: 50%;
+}
+button {
+    margin-right: 0.25em;
 }
 </style>
