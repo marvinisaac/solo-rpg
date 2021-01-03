@@ -25,9 +25,11 @@
 <script>
 import mythic from './services/mythic.js'
 import hotkeys from 'hotkeys-js'
+import dexie from 'dexie'
 
 export default {
     data: () => ({
+        db: undefined,
         state: {
             isAsking: false,
             isSaving: false
@@ -46,6 +48,14 @@ export default {
         hotkeys('ctrl+s', (event) => {
             event.preventDefault()
             this.save()
+        })
+
+        this.db = new dexie('solo-rpg')
+        this.db.version(1).stores({
+            campaign: '++id, name',
+            npc: '++id, campaignId, name',
+            thread: '++id, campaignId, description',
+            location: '++id, campaignId, name'
         })
     },
     methods: {
@@ -85,6 +95,7 @@ textarea {
     outline: none;
     resize: none;
     width: 50%;
+        min-width: 480px;
 }
 .button-container {
     margin-bottom: 0.25em;
