@@ -1,9 +1,23 @@
 <template>
     <div class="input-container">
-        <input @keyup.enter="createNpc()"
-            v-model="input.npc"
-            placeholder="Add new NPC...">
-        <button @click="createNpc()">Create</button>
+        <div class="input">
+            <input @keyup.enter="createLocation()"
+                v-model="input.location"
+                placeholder="Add new location...">
+            <button @click="createLocation()">Create (Enter)</button>
+        </div>
+        <div class="input">
+            <input @keyup.enter="createNpc()"
+                v-model="input.npc"
+                placeholder="Add new NPC...">
+            <button @click="createNpc()">Create (Enter)</button>
+        </div>
+        <div class="input">
+            <input @keyup.enter="createThread()"
+                v-model="input.thread"
+                placeholder="Add new thread...">
+            <button @click="createThread()">Create (Enter)</button>
+        </div>
     </div>
     <div class="button-container">
         <button @click="ask()">
@@ -27,9 +41,24 @@
         <textarea id="textarea" v-model="text"></textarea>
     </div>
     <div class="list-container">
-        <ul>
-            <li v-for="npc in list.npc" :key="npc">{{npc}}</li>
-        </ul>
+        <div class="list">
+            <h2>Locations</h2>
+            <ul>
+                <li v-for="location in list.location" :key="location">{{location}}</li>
+            </ul>
+        </div>
+        <div class="list">
+            <h2>NPCs</h2>
+            <ul>
+                <li v-for="npc in list.npc" :key="npc">{{npc}}</li>
+            </ul>
+        </div>
+        <div class="list">
+            <h2>Threads</h2>
+            <ul>
+                <li v-for="thread in list.thread" :key="thread">{{thread}}</li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -42,10 +71,14 @@ export default {
     data: () => ({
         db: undefined,
         input: {
-            npc: ''
+            location: '',
+            npc: '',
+            thread: ''
         },
         list: {
-            npc: []
+            location: [],
+            npc: [],
+            thread: []
         },
         state: {
             campaignId: 0,
@@ -81,9 +114,17 @@ export default {
         const filter = {
             campaignId: this.state.campaignId
         }
+        const rawLocation = await this.db.location.where(filter).toArray() || []
+        rawLocation.forEach(location => {
+            this.list.location.push(location.name)  
+        })
         const rawNpc = await this.db.npc.where(filter).toArray() || []
         rawNpc.forEach(npc => {
             this.list.npc.push(npc.name)  
+        })
+        const rawThread = await this.db.thread.where(filter).toArray() || []
+        rawThread.forEach(thread => {
+            this.list.thread.push(thread.description)  
         })
     },
     methods: {
@@ -105,7 +146,18 @@ export default {
                 this.state.isAsking = false
                 this.save()
             }, 500);
-        }, 
+        },
+        async createLocation() {
+            const location = this.input.location
+            this.list.location.push(location)
+            await this.db.location.put({
+                campaignId: this.state.campaignId,
+                name: location
+            })
+
+            // Clear input
+            this.input.location = ''
+        },
         async createNpc() {
             const npc = this.input.npc
             this.list.npc.push(npc)
@@ -116,6 +168,17 @@ export default {
 
             // Clear input
             this.input.npc = ''
+        },
+        async createThread() {
+            const thread= this.input.thread
+            this.list.thread.push(thread)
+            await this.db.thread.put({
+                campaignId: this.state.campaignId,
+                description: thread
+            })
+
+            // Clear input
+            this.input.thread = ''
         },
         save() {
             this.state.isSaving = true
@@ -144,6 +207,15 @@ textarea {
     }
 }
 .input-container {
-    margin-bottom: 0.25em;
+    .input {
+        margin-bottom: 0.25em;
+    }
+}
+.list-container {
+    display: flex;
+
+    .list {
+        width: 33.33%;
+    }
 }
 </style>
