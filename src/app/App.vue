@@ -1,4 +1,10 @@
 <template>
+    <div class="input-container">
+        <input @keyup.enter="createNpc()"
+            v-model="input.npc"
+            placeholder="Add new NPC...">
+        <button @click="createNpc()">Create</button>
+    </div>
     <div class="button-container">
         <button @click="ask()">
             <span v-if="state.isAsking">
@@ -20,6 +26,11 @@
     <div>
         <textarea id="textarea" v-model="text"></textarea>
     </div>
+    <div class="list-container">
+        <ul>
+            <li v-for="npc in list.npc" :key="npc">{{npc}}</li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -30,13 +41,20 @@ import dexie from 'dexie'
 export default {
     data: () => ({
         db: undefined,
+        input: {
+            npc: ''
+        },
+        list: {
+            npc: []
+        },
         state: {
+            campaignId: 0,
             isAsking: false,
             isSaving: false
         },
         text: ''
     }),
-    created () {
+    async created () {
         this.text = localStorage.getItem('text') || ''
 
         // Hotkeys do NOT work with inputs by default
@@ -50,12 +68,22 @@ export default {
             this.save()
         })
 
+        // Initialize indexedDB
         this.db = new dexie('solo-rpg')
         this.db.version(1).stores({
             campaign: '++id, name',
             npc: '++id, campaignId, name',
             thread: '++id, campaignId, description',
             location: '++id, campaignId, name'
+        })
+
+        // Load saved items, if any
+        const filter = {
+            campaignId: this.state.campaignId
+        }
+        const rawNpc = await this.db.npc.where(filter).toArray() || []
+        rawNpc.forEach(npc => {
+            this.list.npc.push(npc.name)  
         })
     },
     methods: {
@@ -78,6 +106,17 @@ export default {
                 this.save()
             }, 500);
         }, 
+        async createNpc() {
+            const npc = this.input.npc
+            this.list.npc.push(npc)
+            await this.db.npc.put({
+                campaignId: this.state.campaignId,
+                name: npc
+            })
+
+            // Clear input
+            this.input.npc = ''
+        },
         save() {
             this.state.isSaving = true
             setTimeout(() => {
@@ -103,5 +142,8 @@ textarea {
     button {
         margin-right: 0.25em;
     }
+}
+.input-container {
+    margin-bottom: 0.25em;
 }
 </style>
