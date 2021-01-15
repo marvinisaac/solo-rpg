@@ -6,6 +6,7 @@
     </div>
     <div id="editor-container">
         <textarea id="input"
+            @keyup="save()"
             v-if="!readOnly" v-model="input">
         </textarea>
         <div id="output"
@@ -28,10 +29,14 @@ export default {
             return this.renderer.render(this.input)
         }
     },
-    created () {
+    async created () {
         this.renderer = new md()
+        this.input = localStorage.getItem('editor') || ''
     },
     methods: {
+        save() {
+            localStorage.setItem('editor', this.input)
+        },
         toggleMode() {
             this.readOnly = !this.readOnly
         }
