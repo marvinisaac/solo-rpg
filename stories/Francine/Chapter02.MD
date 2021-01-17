@@ -55,7 +55,7 @@ Captain
 
 *(Somewhere in the forest, around midnight)*
 
-Francine is leading the three guards through the dark forest. They have finished checking almost all of the old known bandit camps only to find them empty. Only two more and after those it will be a wild hunt until the morning.
+Francine is leading the three guards through the dark forest. They have finished checking almost all of the old known bandit camps only to find them empty. Only two more and after those, it will be a wild hunt until the morning.
 
 ```
 Are there bandits in the next camp? Yes (50/50, 26)
@@ -93,7 +93,7 @@ Damage: 7 (4 + 3)
 Bandit 1 HP: 4/11
 ```
 
-As the bandit looks at her direction, she lets loose her arrow and hits him right at his right collar bone. He shrieks in pain alerting everyone. Meanwhile, the guards rush forward into the camp.
+As the bandit looks in her direction, she lets loose her arrow and hits him right at his right collar bone. He shrieks in pain alerting everyone. Meanwhile, the guards rush forward into the camp.
 
 The bloodied bandit moves back a little bit. Three more bandits become visible, two from the tower and one from the farther side. All four aim their crossbows and shoot the guards.
 
@@ -192,7 +192,7 @@ Francine
 **"Don't chase him, look for the swords!"**
 </center>
 
-Francine commands as she rush to her fallen comrade to check if he's still alive. Checking his neck for pulse, there's still something. His armor protected all his vital organs but he took a bolt to his left elbow.
+She commands as she rushes to her fallen comrade to check if he's still alive. Checking his neck for pulse, there's still something. His armor protected all his vital organs but he took a bolt to his left elbow.
 
 <center>
 Francine
@@ -250,7 +250,7 @@ Francine
 **"Come on! We need to go back! He needs help!"**
 </center>
 
-Francine and another guard is carrying their fallen comrade, the two prisoners are carrying a crate with as much swords as they can, while the last guard is also carrying as much sword as he can.
+Francine and another guard are carrying their fallen comrade, the two prisoners are carrying a crate with as many swords as they can, while the last guard is also carrying as many swords as he can.
 
 She knows that if they get ambushed in this formation, the situation can get dire very fast but this man needs help and the shipment must be sent to the capital as soon as possible.
 
@@ -295,4 +295,4 @@ Francine
 **"Lecture me later, okay? For now, let's get him to town for help. We also need to go back to that tower ruins. I think half of the swords are still there."**
 </center>
 
-Fracine, Tom, and two more guards return to the ruins. The rest went back to town to get much needed medical attention.
+Francine, Tom, and two more guards return to the ruins. The rest went back to town to get much needed medical attention.

@@ -7,13 +7,13 @@ Interpretation: Francine catches a kobold spy during her patrol
 ```
 *(Somewhere in the forest)*
 
-The sun is barely visible on the horizon, the air is cold, and the forest is calm. It's almost dawning and Francine has already started walking back to town when she suddenly hears sound of snapping twigs. What, or who, ever stepped on those twigs seems to be in a hurry. It certainly isn't an animal but what? She follows the sound, carefully but swiftly she closes in on it.
+The sun is barely visible on the horizon, the air is cold, and the forest is calm. It's almost dawning and Francine has already started walking back to town when she suddenly hears the sound of snapping twigs. What, or who, ever stepped on those twigs seems to be in a hurry. It certainly isn't an animal but what? She follows the sound, carefully but swiftly she closes in on it.
 
-The sound stops. She stops too, and then hides behind a tree. It took a second or two before she can hear it moving again. Not wanting to get too close to it again, she prepares an entangling shot using some stone, rope and an arrow.
+The sound stops. She stops too and then hides behind a tree. It took a second or two before she can hear it moving again. Not wanting to get too close to it again, she prepares an entangling shot using some stone, rope, and an arrow.
 
 She can barely hear its steps but it seems to be slowing down. She stealthily walks, weapon drawn and ready.
 
-The sound of rustling leaves replace the sound of twigs snapping. A berry bush about 100ft is moving but she can't see what's causing it. She walks around and, at about 50ft or so from her, she spots it: a kobold. Without a moment's hesitation, she fires. She aims for the creature's legs to disable and, hopefully, interrogate it.
+The sound of rustling leaves replaces the sound of twigs snapping. A berry bush about 100ft is moving but she can't see what's causing it. She walks around and, at about 50ft or so from her, she spots it: a kobold. Without a moment's hesitation, she fires. She aims for the creature's legs to disable and, hopefully, interrogate it.
 
 ```
 Attack hits! (Attack 17 + 5 vs AC 12)
@@ -35,7 +35,7 @@ Francine
 **"What are you doing here?"**
 </center>
 
-Her hate and contempt for the creature is palpable. The dagger is pressed so hard, its starting to cut through its flesh. She releases the snout just enough to let it speak.
+Her hate and contempt for the creature are palpable. The dagger is pressed so hard, it is starting to cut through its flesh. She releases the snout just enough to let it speak.
 
 <center>
 Kobold
@@ -43,7 +43,7 @@ Kobold
 **"I... I hungry. Just... just want food."**
 </center>
 
-The kobold is obviously afraid, which suprises her. That is something she hasn't seen or even imagined possible from these things.
+The kobold is obviously afraid, which surprises her. That is something she hasn't seen or even imagined possible from these things.
 
 As much as she wanted to kill the thing, it is weird that it seems to be alone. Based on her studies and experience, they prefer working in packs and they never come out this close to dawn.
 
@@ -75,6 +75,8 @@ Damage of 2 + 3
 
 The dagger's butt squarely hits it at the top of its head, knocking it unconscious. She uses some more rope to tie its snout and hands. She also ties its feet and uses that to drag it on her way back.
 
+---
+
 *(Outside of town)*
 
 As the sun comes up the horizon, the town's watchtower spots her. The guard, as soon as she enters earshot, shouts...
@@ -97,7 +99,7 @@ Tom
 **"Their meat is tough but that is still meat."**
 </center>
 
-Tom and three more guards ready their bow as the town's gate is opened. Another has his sights on the kobold, just to be sure.
+Tom and three more guards ready their crossbows as the town's gate is opened. Another has his sights on the kobold, just to be sure.
 
 Swordstone is a small town, focused on producing its namesake: swords.
 
